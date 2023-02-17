@@ -34,17 +34,6 @@ a {
   box-sizing: border-box;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  body {
-    color: white;
-    background: black;
-  }
-} */
-
 main {
   width: 80vw;
   max-width: 1024px;
@@ -74,15 +63,32 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
 
-  .contained {
-    .primary {
+
+  &.contained {
+    &.primary {
       background-color: $primary;
+      color: $corporative-white;
     }
 
-    .secondary {
+    &.secondary {
       background-color: $secondary;
     }
+
+    &.complementary-blue-1 {
+      background-color: $complementary-blue-1;
+      color: $corporative-white;
+    }
+  }
+
+  &.rounded {
+    border-radius: 16px;
+  }
+
+  &.circle {
+    border-radius: 50%;
   }
 }
 
@@ -94,16 +100,32 @@ button {
   margin: auto;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mx-1 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .text-center {
   text-align: center;
 }
 
+.text-complementary-orange {
+  color: $complementary-orange;
+}
+
 .file-input {
+  height: 100%;
+
   &--input {
     opacity: 0;
     position: absolute;
@@ -111,16 +133,12 @@ button {
   }
 
   &--label {
-    display: block;
-    // width: 100%;
-    width: 124px;
-    height: 124px;
-    color: $corporative-white;
-    background-color: $primary;
-    padding: 10px 20px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 
   &--caption {
@@ -135,17 +153,58 @@ img.profile-picture {
 
 .user-documents {
   display: flex;
-  flex-wrap: wrap;
+  align-content: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fill,minmax(124px, 1fr));
 
   &--item {
-    // padding: 1rem;
-    // flex: 1 1 0;
-    // flex: 1 1 124px;
-    // flex: 1 1 0px;
+    display: block;
+    width: 124px;
+    height: 124px;
+    color: $corporative-white;
+    background-color: $primary;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+
+    >* {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      color: $corporative-white;
+    }
+  }
+}
+
+.modal {
+  background: rgba($corporative-black, 0.5);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  transition: all .5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--header {
+    background-color: $primary;
+    color: $corporative-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--content {
+    background-color: white;
+    color: black;
+    margin: 1rem;
+    width: 90vw;
   }
 }
 
@@ -154,12 +213,55 @@ img.profile-picture {
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+
+  &--name {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.selfie {
+
+  &--status,
+  &--instructions,
+  &--preview,
+  &--actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  &--status {
+    background-color: $corporative-grey-3;
+    color: $corporative-grey-1;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  &--instructions {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &--preview {
+    margin: 1rem 0;
+    overflow: clip;
+  }
+
+  &--success-message {
+    text-align: center;
+  }
+
+  &--actions {
+    margin-bottom: 1rem;
+    flex-direction: column;
+  }
+
 }
 
 /* Breakpoints */
 
-/* XS */
 @media (max-width: $breakpoint-sm) {
+
+  /* extra-small devices */
   body {
     background-color: purple;
   }
@@ -173,38 +275,44 @@ img.profile-picture {
   }
 }
 
-/* SM */
-@media (min-width: $breakpoint-sm) {
-  body {
-    background-color: red;
-  }
 
+@media (min-width: $breakpoint-sm) {
+
+  /* small devices */
   .user-documents {
     flex-direction: column;
   }
 }
 
-/* MD */
 @media (min-width: $breakpoint-md) {
-  body {
-    background-color: yellow;
-  }
+  /* medium devices */
 
   .user-documents {
     flex-direction: row;
   }
+
+  .modal {
+    &--content {
+      width: 50vw;
+    }
+  }
 }
 
-/* LG */
 @media (min-width: $breakpoint-lg) {
-  body {
-    background-color: green;
-  }
+  /* large devices */
 }
 
-/* XL */
 @media (min-width: $breakpoint-xl) {
-  body {
-    background-color: blue;
-  }
+  /* extra-large devices */
 }
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    color: white;
+    background: black;
+  }
+} */

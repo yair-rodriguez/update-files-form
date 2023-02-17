@@ -16,7 +16,7 @@ function UserInformation(props: Props): JSX.Element {
         src={image}
         alt={`${name}'s profile picture`}
       />
-      <span>{name}</span>
+      <span className="user-information--name">{name}</span>
     </div>
   );
 }
